@@ -1,0 +1,33 @@
+{% extends "Master.html"%}
+ 
+{%block content%} 
+<div class="container"> 
+    <form method="post">
+        {%csrf_token%}
+        <h2>{{msg}}</h2>
+    </form>
+     
+    <p> </p>
+    <h1>WELLCOME to Make Payment Page...</h1>
+    <form method="post">
+        {%csrf_token%}
+        <table class="table">
+            <tr>
+                <td>Enter Name on card</td><td><input placeholder="Name on card" type="text" name="uname"/></td>
+            </tr>
+            <tr>
+                <td>Enter Card no.</td><td><input placeholder="Card no." type="text" name="card_no"/> </td>
+            </tr>
+            <tr>
+                <td>Enter Expiry</td><td><input placeholder="Expiry" type="text" name="expiry"/> </td>
+            </tr>
+            <tr>
+                <td>Enter CVV</td><td><input placeholder="CVV" type="text" name="cvv"/> </td>
+            </tr>
+            <tr>
+                <td><button type="submit" class="button btn-success">Make Payment</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{%endblock%} 

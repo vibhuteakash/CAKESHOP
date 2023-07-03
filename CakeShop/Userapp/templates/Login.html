@@ -1,0 +1,22 @@
+{% extends "Master.html"%}
+ 
+{%block content%} 
+<div class="container"> 
+    <h1>WELLCOME to Login Page...</h1>
+    <P> </P>
+    <form method="post">
+        {%csrf_token%}
+        <table class="table">
+            <tr>
+                <td>Enter Login Id:</td><td><input type="text" name="uname"/></td>
+            </tr>
+            <tr>
+                <td>Enter Password:</td><td><input type="text" name="pwd"/> </td>
+            </tr>
+            <tr>
+               <td><button type="submit" class="button btn-success">Login</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{%endblock%} 

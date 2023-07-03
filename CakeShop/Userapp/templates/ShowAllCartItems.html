@@ -1,0 +1,54 @@
+{% extends "Master.html"%}
+ 
+{%block content%} 
+<script type="text/javascript">
+    function decrement(id){
+        txt_qty=document.getElementById(id);
+        if(txt_qty.value>1){
+            txt_qty.value=parseInt(txt_qty.value)-1 ;
+        }
+          
+    }
+
+    function increment(id){
+        txt_qty=document.getElementById(id);
+        if(txt_qty.value<10)
+        { 
+        txt_qty.value=parseInt(txt_qty.value)+1 ;
+        }
+         
+    }
+</script>
+
+<div class="container"> 
+    <h1>Cart Details</h1>
+<table class="table" >
+    
+        <tr>
+            <th>Cake Name</th><th>Cake Price</th><th>Quantity</th><th>Sub Total</th><th>Update</th><th>Remove</th>
+        </tr>
+        {%for data in items%}
+           <form method="post"> 
+            {%csrf_token%}
+             <tr>
+            <td>{{data.cake.cake_name}}
+                <input type="hidden" value="{{data.cake.id}}" name="cakeid"/>
+            </td>
+            <td>{{data.cake.price}}</td>
+            <td><button type="button" class="btn btn-warning" id="decr" onclick="decrement('qty{{data.cake.id}}')">-</button>
+                <input size="3" type="text" value="{{data.qty}}" id="qty{{data.cake.id}}" name="qty" readonly/>
+                <button type="button" class="btn btn-warning" id="incr" onclick="increment('qty{{data.cake.id}}')">+</button>
+            </td>
+            <td>{% widthratio data.cake.price 1 data.qty %}</td>
+            <td><button type="submit" value="update" name="action" class="btn btn-danger">Update</button></td>
+            <td><button type="submit" value="remove" name="action" class="btn btn-danger">Remove</button></td>
+            </tr>
+           </form>     
+        {%endfor%}
+</table>
+    <hr>
+    <h3><p class="text-primary">Total :{{request.session.total}}</p></h3>  
+    <center><a href="/Makepayment" class="btn btn-success">Proceed To Make Payment</a></center> 
+</div>
+
+{%endblock%} 
